@@ -1,0 +1,118 @@
+<FirstPage>:     #here we work on the first page
+    FloatLayout:          #apply a layout
+        Image:                 #backroung image
+            source: 'images/green-5406026_1280.jpg'   #i created an images file in the project file where we can put all images
+            allow_stretch: True
+            keep_ratio: False
+            size: self.parent.size
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            id: welcome_label
+            text: 'Welcome!'
+            font_size: 50
+            bold: True
+            color: (1, 1, 1, 1) # White
+            size_hint: 0.5, 0.5
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+
+        Button:
+            text: 'Next'
+            on_press:
+                root.manager.transition.direction = 'left'      #the animation goes left
+                root.manager.current = 'second'                 #with this command we move to the second page
+                                                # Make the button transparent
+            background_color: (1, 1, 1, 0.03)
+                                                # Place the button below the text
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            size_hint: 0.1, 0.1
+
+
+<SecondPage>:    #here we work on the second page
+    FloatLayout:
+        Image:    #again background image
+            source: 'images/Untitled-2.jpg'
+            allow_stretch: True
+            keep_ratio: False
+            size: self.parent.size
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            text: 'Are you ready to change your city?'
+            bold: True
+            font_size: 40
+            color: (0.6, 0.2, 0.5, 1) # White
+            size_hint: 0.5, 0.5
+            pos_hint: {'center_x': 0.50, 'center_y': 0.82}
+
+        Button:     #this button takes us further to who are you page
+            text: 'Yes!'
+            font_size: 35
+            bold: True
+            color: (0.6, 0.2, 0.5, 1) # White
+            size_hint: 0.1, 0.1
+                                                # Make the button transparent
+            background_color: (1, 1, 1, 0.18)
+                                                # Place the button below the text
+            pos_hint: {'center_x': 0.67, 'center_y': 0.1}
+
+            on_press:
+                root.manager.transition.direction='left'
+                root.manager.current='who'
+
+        Button:             #this button takes us back
+            text: 'Back'
+            font_size: 26
+            bold: True
+            color: (1, 1, 1, 0.8) # White
+            size_hint: 0.1, 0.1
+                                                # Make the button transparent
+            background_color: (1, 1, 1, 0.18)
+                                                # Place the button below the text
+            pos_hint: {'center_x': 0.33, 'center_y': 0.1}
+
+            on_press:
+                root.manager.transition.direction = 'right'    #right swipe animation
+                root.manager.current='first'        #we go back to the first page
+
+
+<WhoAreYou>:
+    FloatLayout:
+        size_hint: 1, 1
+        Image:
+            source: 'images/green-5406026_1280.jpg'
+            allow_stretch: True
+            keep_ratio: False
+            size: self.parent.size
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        Label:
+            text: "What's your name?"
+            font_size: 40
+            bold: True
+            color: (1, 1, 1, 1) # White
+            size_hint: 0.5, 0.5
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+
+        TextInput:
+            text: 'Type your name...'
+            id: username_input    #we save this variable so we can use it
+            multiline: False        #you cannot write multiple lines, after enter you are taken out
+            size_hint: (0.5, None)
+            height: 30
+            pos_hint: {'center_x': 0.6, 'center_y': 0.5}
+            background_color: rgba(0,0,0,0)
+            foreground_color: 'green'
+            font_size: 16
+
+        Button:
+            text: 'Save'
+            on_press:
+                root.save_name(username_input.text)
+            font_size: 26
+            bold: True
+            color: (1, 1, 1, 1) # White
+            size_hint: 0.1, 0.1
+            background_color: (1, 1, 1, 0.03)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+
