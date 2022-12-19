@@ -12,6 +12,7 @@ from kivy.uix.boxlayout import BoxLayout
 from datetime import datetime, timedelta
 import os
 from kivy.uix.image import Image
+import json
 ################points and profile info####################
 new_email=""
 new_password=""
@@ -130,6 +131,8 @@ class CreateAccount(Screen):
         self.parent.current = 'who'
 
 # Map screen with markers and associated messages
+flag_for_1execution = True
+marker_info = {}  # dictionary to store saved marker information
 flag_for_1execution = True  #i use this flag to not be able to click and create infinite instances of marker descriptions
 class Map(Screen):     #you need to install mapview    (pip install mapview)                 #also install garden (garden install mapview ) in terminal
     def __init__(self, **kwargs):
@@ -221,7 +224,7 @@ class Map(Screen):     #you need to install mapview    (pip install mapview)    
                             global UserName
                             global last_completion_time
                             reward_label=Label(text='You won {points_reward} points',color=(32/255,32/255,32/255,1),font_size=30)   #create custom text for popup method 1
-                            reward_label.text = reward_label.text.format(points_reward=100 * float(streak))
+
                             if last_completion_time is not None and week_has_passed(
                                     last_completion_time):  # if a week from last completion has passed
                                 streak = 1  # reset the streak
@@ -231,6 +234,7 @@ class Map(Screen):     #you need to install mapview    (pip install mapview)    
                             last_completion_time = datetime.now()
                             total_points_formatted = format(round(float(total_user_points), 2), '.2f')
                             total_user_points = int(float(total_points_formatted) + 100 * float(streak))
+                            reward_label.text = reward_label.text.format(points_reward=100 * streak)
                             ###########################################################
                             #update user progress
                             update_data()
@@ -258,6 +262,10 @@ class Map(Screen):     #you need to install mapview    (pip install mapview)    
 
                         savedmarker.bind(on_release=markerpopups[savedmarker].open)    #we tell when the functions activates (on click)
                         flag_for_1execution=True       #after something was saved we can create another marker
+#######################################
+                        
+#################################
+
                     savebtn.bind(on_press=on_savebtn_click)     #we bind the function instructions to the 'on_press' so that it knows to execute the function when we press the button
                 btn.bind(on_press=on_btn_click)     #same, this tells that the above function will be activated if button btn is clicked
                 # Add the button as a widget to the MapView
@@ -282,6 +290,8 @@ class Map(Screen):     #you need to install mapview    (pip install mapview)    
         mapview.bind(on_touch_down=on_click) #this activates the big on_click function
         self.add_widget(mapview)    #we add whole mapview to screen
         ########################################################################### end of on_click function
+
+
 
 class MainPage(Screen):
         pass
