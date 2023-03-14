@@ -1,0 +1,186 @@
+<RoundedButton@Button>
+
+	background_color: (0,0,0,0)
+	background_normal: ''
+	canvas.before:
+		Color:
+			rgba: (214, 233, 202, 0.03)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [15]
+
+
+<BorderButton@Button>
+
+    background_normal:''
+    background_color: 185/255, 206/255, 163/255,1
+    color: 124/255, 164/255, 129/255, 1
+    canvas.before:
+        Color:
+            rgba: 133/255, 160/255, 129/255, 1
+        Line:
+            width: 3
+            rectangle: self.x, self.y, self.width, self.height
+
+
+<Label>
+    color: 124/255, 164/255, 129/255, 1
+
+
+<WhoAreYou>:
+
+
+    FloatLayout:
+
+        Image:
+            source: 'images/green.png'
+            allow_stretch: True
+            keep_ratio: False
+            size: self.parent.size
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            text:"Login"
+            text_size: self.size
+            haling:"left"
+            font_size: 35
+            bold:True
+            size_hint: .8,.1
+            pos_hint: {'x': 0.1 , 'y': .85}
+            color: 'green'
+
+        Label
+            text:"Please sign-in to continue"
+            text_size: self.size
+            haling:"left"
+            size_hint: .8, .1
+            pos_hint: {'x': 0.1, 'y': .78}
+            font_size: 20
+            color:'green'
+
+
+        TextInput:
+
+            id: username_input    #we save this variable so we can use it
+            font_size: 17
+            multiline: False
+            hint_text:"Email"
+            pos_hint: {"x": 0.1 , "y":0.7}
+            size_hint: 0.8, 0.06
+            background_color: (203/255,203/255,195/255,1) if self.focus else (1,1,1,1)
+
+        TextInput:
+
+            id: password_input    #we save this variable so we can use it
+            font_size: 17
+            multiline: False
+            hint_text:"Password"
+            password: True
+            pos_hint: {"x": 0.1, "y":0.6}
+            size_hint: 0.8, 0.06
+            background_color: (203/255,203/255,195/255,1) if self.focus else (1,1,1,1)
+
+
+        RoundedButton:
+            text: 'Continue'
+            on_press:
+                root.check_login(username_input.text,password_input.text)
+            pos_hint:{"x":0.5,"y":0.45}
+            size_hint: 0.4, 0.1
+            font_size: 25
+            text: "Login"
+            color: 'green'
+
+
+
+        Button:
+            pos_hint:{"x":0.1,"y":0.1}
+            background_normal:''
+            background_color: 1,1,1,0
+            size_hint: 0.8, 0.1
+            text_size: self.size
+            haling:"left"
+            font_size: 20
+            text: "Don't have an Account? Create One."
+            on_press:
+                root.manager.current='create'
+            color:'green'
+
+<CreateAccount>:
+
+
+    FloatLayout:
+        Image:
+            source: 'images/green.png'
+            allow_stretch: True
+            keep_ratio: False
+            size: self.parent.size
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            text: "Create an Account"
+            size_hint: 0.8, 0.2
+            pos_hint: {"x":0.1, "top":1}
+            font_size: 30
+            text_size:self.size
+            align:"left"
+            color: 'green'
+
+
+        TextInput:
+
+            id: new_email    #we save this variable so we can use it
+            pos_hint: {"x": 0.1, "y":0.6}
+            size_hint: 0.8, 0.06
+            hint_text:"Email"
+            multiline: False
+            font_size: 20
+            background_color: (203/255,203/255,195/255,1) if self.focus else (1,1,1,1)
+
+        TextInput:
+
+            id: new_password    #we save this variable so we can use it
+            pos_hint: {"x": 0.1, "y":0.5}
+            size_hint: 0.8, 0.06
+            hint_text:"Password"
+            multiline: False
+            font_size: 20
+            password: True
+            background_color: (203/255,203/255,195/255,1) if self.focus else (1,1,1,1)
+
+        RoundedButton:
+
+            on_press:
+                root.save_account(new_email.text,new_password.text,name_input.text)
+            pos_hint:{"x":0.5,"y":0.35}
+            size_hint: 0.4, 0.1
+            text: "Submit"
+            font_size: 25
+            color:'green'
+
+
+        TextInput:
+            hint_text: 'Name'
+            id: name_input    #we save this variable so we can use it
+            pos_hint: {"x": 0.1, "y":0.7}
+            size_hint: 0.8, 0.06
+            hint_text:"Name"
+            multiline: False
+            font_size: 20
+            background_color: (203/255,203/255,195/255,1) if self.focus else (1,1,1,1)
+
+        Button:
+            pos_hint:{"x":0.1,"y":0.1}
+            size_hint: 0.8, 0.1
+            background_normal:''
+            background_color: 185/255, 206/255, 163/255,0
+            font_size: 20
+            text: "Already have an Account? Log In"
+            text_size: self.size
+            haling:"left"
+            on_release:
+                root.manager.current = 'who'
+            color:'green'
+
+
