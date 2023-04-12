@@ -6,3 +6,8 @@ Here you can download the app too on your phone:
 https://drive.google.com/file/d/15JnedH-8EFKgOdECNoxIQPuJ29k7IfID/view?usp=sharing
 
 (note that VariantaFinala is the final code, the rest are only betas!)
+
+Special thanks to:
+-borsadavid
+-nerfstorm
+-Ionut2888
