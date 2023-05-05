@@ -7,7 +7,7 @@ https://drive.google.com/file/d/15JnedH-8EFKgOdECNoxIQPuJ29k7IfID/view?usp=shari
 
 (note that VariantaFinala is the final code, the rest are only betas!)
 
-Special thanks to: borsadavid, nerfstorm, Ionut2888.
+Special thanks to: borsadavid, nerfstorm, Ionut2888, ma-rosu, emo-gato.
 
 
 ![IMG-20230412-WA0036](https://user-images.githubusercontent.com/117638387/231549646-494d58e8-97b6-4b49-a261-518759375454.jpg)
